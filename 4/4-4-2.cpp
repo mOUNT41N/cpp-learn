@@ -40,8 +40,8 @@ MyFriend::MyFriend()
 
 void MyFriend::visit()
 {
-    cout << "visit " << endl;
-    cout << "visit " << endl;
+    cout << "visit " << building->m_BedRoom << endl;
+    cout << "visit " << building->m_SittingRoom << endl;
 }
 
 int main()
