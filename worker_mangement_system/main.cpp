@@ -3,22 +3,22 @@
 
 void test_worker()
 {
-    Worker *worker = NULL;
-    worker = new Employee(101, 1, "employee-mountain");
-    // worker->setIntroduction("employee");
-    worker->showInfo();
-    delete worker;
+    Worker *worker1 = NULL;
+    worker1 = new Employee(101, 1, "employee-mountain");
+    worker1->setIntroduction("employee");
+    Worker *worker2 = NULL;
+    worker2 = new Manager(11, 2, "manager-mountain");
+    worker2->setIntroduction("manager");
+    Worker *worker3 = NULL;
+    worker3 = new Boss(1, 3, "boss-mountain");
+    worker3->setIntroduction("boss");
 
-    worker = new Manager(11, 2, "manager-mountain");
-    // worker->setIntroduction("manager");
-    worker->showInfo();
-    delete worker;
-
-    worker = new Boss(1, 3, "boss-mountain");
-    // worker->setIntroduction("boss");
-    worker->showInfo();
-
-    delete worker;
+    worker1->showInfo();
+    worker2->showInfo();
+    worker3->showInfo();
+    delete worker1;
+    delete worker2;
+    delete worker3;
 }
 
 int main()
