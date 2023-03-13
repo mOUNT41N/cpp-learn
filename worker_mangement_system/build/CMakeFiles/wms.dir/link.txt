@@ -1,0 +1,3 @@
+D:\Application\CMake\bin\cmake.exe -E rm -f CMakeFiles\wms.dir/objects.a
+D:\Environment\mingw64\bin\ar.exe qc CMakeFiles\wms.dir/objects.a @CMakeFiles\wms.dir\objects1.rsp
+D:\Environment\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\wms.dir/objects.a -Wl,--no-whole-archive -o wms.exe -Wl,--out-implib,libwms.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\wms.dir\linklibs.rsp
