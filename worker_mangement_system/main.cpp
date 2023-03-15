@@ -3,6 +3,7 @@
 
 void test_worker()
 {
+    cout << "----------worker_test----------";
     Worker *worker1 = NULL;
     worker1 = new Employee(101, 1, "employee-mountain");
     worker1->setIntroduction("employee");
@@ -21,8 +22,16 @@ void test_worker()
     delete worker3;
 }
 
+void test_add_emplpyee()
+{
+    cout << "----------add_test----------";
+    WorkerManager wm;
+    wm.Select();
+}
+
 int main()
 {
     cout << "main" << endl;
-    test_worker();
+    // test_worker();
+    test_add_emplpyee();
 }

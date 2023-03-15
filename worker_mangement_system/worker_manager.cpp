@@ -17,7 +17,7 @@ WorkerManager::~WorkerManager()
     }
 }
 
-inline void WorkerManager::AddEmployee()
+void WorkerManager::AddEmployee()
 {
     cout << "请输入增加职工数量:" << endl;
     int add_num = 0;
@@ -81,7 +81,7 @@ inline void WorkerManager::AddEmployee()
         cout << "输入有误" << endl;
     }
 }
-inline void WorkerManager::ShowMenu()
+void WorkerManager::ShowMenu()
 {
     cout << "--------------------------------------------" << endl;
     cout << "---------  WorkerManagementSystem ----------" << endl;
@@ -96,12 +96,12 @@ inline void WorkerManager::ShowMenu()
     cout << "--------------------------------------------" << endl;
     cout << endl;
 }
-inline void WorkerManager::ExitSys()
+void WorkerManager::ExitSys()
 {
     cout << "欢迎下次使用" << endl;
     exit(0);
 }
-inline void WorkerManager::Select()
+void WorkerManager::Select()
 {
     ShowMenu();
     while (true)
@@ -116,6 +116,7 @@ inline void WorkerManager::Select()
             ExitSys();
             break;
         case 1: // 添加职工
+            AddEmployee();
             break;
         case 2: // 显示职工
             break;

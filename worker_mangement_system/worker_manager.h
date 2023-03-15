@@ -2,6 +2,8 @@
 #define __WORKER_MANAGER__
 
 #include <iostream>
+#include "worker.h"
+
 using namespace std;
 class WorkerManager
 {
