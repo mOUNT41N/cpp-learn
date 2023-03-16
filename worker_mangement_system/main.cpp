@@ -22,7 +22,7 @@ void test_worker()
     delete worker3;
 }
 
-void test_add_emplpyee()
+void test_func()
 {
     cout << "----------add_test----------";
     WorkerManager wm;
@@ -33,5 +33,6 @@ int main()
 {
     cout << "main" << endl;
     // test_worker();
-    test_add_emplpyee();
+    test_func();
+    return 0;
 }

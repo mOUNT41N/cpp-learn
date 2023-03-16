@@ -2,9 +2,15 @@
 #define __WORKER_MANAGER__
 
 #include <iostream>
+#include <fstream>
 #include "worker.h"
-
 using namespace std;
+
+const string FILE_NAME = "employee_file.txt";
+const int EMPLOYEE_DEPT_ID = 1;
+const int MANAGER_DEPT_ID = 2;
+const int BOSS_DEPT_ID = 3;
+
 class WorkerManager
 {
 public:
@@ -19,6 +25,7 @@ public:
     void Select();      // 选择菜单
     void ExitSys();     // 退出
     void AddEmployee(); // 添加职工
+    void SaveFile();    // 保存文件
 };
 
 #endif

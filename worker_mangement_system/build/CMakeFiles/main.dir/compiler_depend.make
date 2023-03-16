@@ -129,7 +129,12 @@ CMakeFiles/main.dir/main.cpp.obj: D:/Code/c++/c++learn/worker_mangement_system/m
   D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/ostream.tcc \
   D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/istream \
   D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/istream.tcc \
-  D:/Code/c++/c++learn/worker_mangement_system/worker_manager.h
+  D:/Code/c++/c++learn/worker_mangement_system/worker_manager.h \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/fstream \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/codecvt.h \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/fstream.tcc
 
 CMakeFiles/main.dir/worker.cpp.obj: D:/Code/c++/c++learn/worker_mangement_system/worker.cpp \
   D:/Code/c++/c++learn/worker_mangement_system/worker.h \
@@ -388,6 +393,11 @@ CMakeFiles/main.dir/worker_manager.cpp.obj: D:/Code/c++/c++learn/worker_mangemen
   D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/ostream.tcc \
   D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/istream \
   D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/istream.tcc \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/fstream \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/codecvt.h \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+  D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/fstream.tcc \
   D:/Code/c++/c++learn/worker_mangement_system/worker.h
 
 
@@ -650,5 +660,15 @@ D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/istream:
 D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/istream.tcc:
 
 D:/Code/c++/c++learn/worker_mangement_system/worker_manager.h:
+
+D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/fstream:
+
+D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/codecvt.h:
+
+D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h:
+
+D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h:
+
+D:/Environment/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/fstream.tcc:
 
 D:/Code/c++/c++learn/worker_mangement_system/worker.cpp:

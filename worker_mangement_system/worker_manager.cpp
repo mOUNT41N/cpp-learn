@@ -1,8 +1,5 @@
 #include "worker_manager.h"
 #include "worker.h"
-const int EMPLOYEE_DEPT_ID = 1;
-const int MANAGER_DEPT_ID = 2;
-const int BOSS_DEPT_ID = 3;
 
 WorkerManager::WorkerManager()
 {
@@ -17,6 +14,62 @@ WorkerManager::~WorkerManager()
     }
 }
 
+void WorkerManager::ShowMenu()
+{
+    cout << "--------------------------------------------" << endl;
+    cout << "---------  WorkerManagementSystem ----------" << endl;
+    cout << "-------------  0.退出管理程序  -------------" << endl;
+    cout << "-------------  1.增加职工信息  -------------" << endl;
+    cout << "-------------  2.显示职工信息  -------------" << endl;
+    cout << "-------------  3.删除离职职工  -------------" << endl;
+    cout << "-------------  4.修改职工信息  -------------" << endl;
+    cout << "-------------  5.查找职工信息  -------------" << endl;
+    cout << "-------------  6.按照编号排序  -------------" << endl;
+    cout << "-------------  7.清空所有文档  -------------" << endl;
+    cout << "--------------------------------------------" << endl;
+    cout << endl;
+}
+void WorkerManager::ExitSys()
+{
+    cout << "欢迎下次使用" << endl;
+    exit(0);
+}
+void WorkerManager::Select()
+{
+    ShowMenu();
+    while (true)
+    {
+        // 展示菜单
+        int choice = -1;
+        cout << "请输入您的选择:" << endl;
+        cin >> choice;
+        switch (choice)
+        {
+        case 0: // 退出系统
+            ExitSys();
+            break;
+        case 1: // 添加职工
+            AddEmployee();
+            break;
+        case 2: // 显示职工
+            break;
+        case 3: // 删除职工
+            break;
+        case 4: // 修改职工
+            break;
+        case 5: // 查找职工
+            break;
+        case 6: // 排序职工
+            break;
+        case 7: // 清空文件
+            break;
+        default:
+
+            break;
+        }
+        ShowMenu();
+    }
+}
 void WorkerManager::AddEmployee()
 {
     cout << "请输入增加职工数量:" << endl;
@@ -75,65 +128,23 @@ void WorkerManager::AddEmployee()
         this->m_employee_array = new_space; // 更改新空间的指向
         this->m_employee_num = new_size;    // 更新新的个数
         cout << "成功添加" << add_num << "名新职工！" << endl;
+        this->SaveFile();
     }
     else
     {
         cout << "输入有误" << endl;
     }
 }
-void WorkerManager::ShowMenu()
+void WorkerManager::SaveFile()
 {
-    cout << "--------------------------------------------" << endl;
-    cout << "---------  WorkerManagementSystem ----------" << endl;
-    cout << "-------------  0.退出管理程序  -------------" << endl;
-    cout << "-------------  1.增加职工信息  -------------" << endl;
-    cout << "-------------  2.显示职工信息  -------------" << endl;
-    cout << "-------------  3.删除离职职工  -------------" << endl;
-    cout << "-------------  4.修改职工信息  -------------" << endl;
-    cout << "-------------  5.查找职工信息  -------------" << endl;
-    cout << "-------------  6.按照编号排序  -------------" << endl;
-    cout << "-------------  7.清空所有文档  -------------" << endl;
-    cout << "--------------------------------------------" << endl;
-    cout << endl;
-}
-void WorkerManager::ExitSys()
-{
-    cout << "欢迎下次使用" << endl;
-    exit(0);
-}
-void WorkerManager::Select()
-{
-    ShowMenu();
-    while (true)
+    ofstream ofs;
+    ofs.open(FILE_NAME, ios::out);
+    for (int i = 0; i < this->m_employee_num; ++i)
     {
-        // 展示菜单
-        int choice = -1;
-        cout << "请输入您的选择:" << endl;
-        cin >> choice;
-        switch (choice)
-        {
-        case 0: // 退出系统
-            ExitSys();
-            break;
-        case 1: // 添加职工
-            AddEmployee();
-            break;
-        case 2: // 显示职工
-            break;
-        case 3: // 删除职工
-            break;
-        case 4: // 修改职工
-            break;
-        case 5: // 查找职工
-            break;
-        case 6: // 排序职工
-            break;
-        case 7: // 清空文件
-            break;
-        default:
-
-            break;
-        }
-        ShowMenu();
+        ofs << this->m_employee_array[i]->m_name << " "
+            << this->m_employee_array[i]->m_id << " "
+            << this->m_employee_array[i]->getDeptName() << " "
+            << this->m_employee_array[i]->m_introduction << endl;
     }
+    ofs.close();
 }
