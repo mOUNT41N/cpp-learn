@@ -16,6 +16,7 @@ class WorkerManager
 public:
     int m_employee_num;        // 记录文件中的人数个数
     Worker **m_employee_array; // 员工数组的指针
+    int file_empty_flag;       // 0为空 1为有内容
 
 public:
     WorkerManager();  // 构造函数

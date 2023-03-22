@@ -5,6 +5,33 @@ WorkerManager::WorkerManager()
 {
     this->m_employee_num = 0;      // 初始化人数
     this->m_employee_array = NULL; // 初始化数组指针
+
+    ifstream ifs;
+    ifs.open(FILE_NAME, ios::in);
+    // 文件不存在
+    if (!ifs.is_open())
+    {
+        cout << "文件不存在" << endl;  // 测试输出
+        this->m_employee_num = 0;      // 初始化人数
+        this->m_employee_array = NULL; // 初始化数组指针
+        this->file_empty_flag = 0;     // 初始化文件标志
+        ifs.close();                   // 关闭文件
+        return;
+    }
+
+    // 文件存在,但没内容
+    char ch;
+    ifs >> ch;
+    if (ifs.eof())
+    {
+        cout << "文件内容为空" << endl; // 测试输出
+        this->m_employee_num = 0;       // 初始化人数
+        this->m_employee_array = NULL;  // 初始化数组指针
+        this->file_empty_flag = 0;      // 初始化文件标志
+        ifs.close();                    // 关闭文件
+        return;
+    }
+    // 文件存在，且有内容
 }
 WorkerManager::~WorkerManager()
 {
@@ -127,6 +154,7 @@ void WorkerManager::AddEmployee()
         delete[] this->m_employee_array;    // 释放原有空间
         this->m_employee_array = new_space; // 更改新空间的指向
         this->m_employee_num = new_size;    // 更新新的个数
+        this->file_empty_flag = 1;          // 更新文件标志
         cout << "成功添加" << add_num << "名新职工！" << endl;
         this->SaveFile();
     }
