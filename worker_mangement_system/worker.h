@@ -13,7 +13,8 @@ public:
     int m_dept_id;         // 职工部门编号
     string m_introduction; // 职工自我介绍
 
-    Worker(const int id, const int dept_id, const string name) : m_id(id), m_dept_id(dept_id), m_name(name) {}
+    Worker(const int id, const int dept_id, const string name, const string introduction)
+        : m_id(id), m_dept_id(dept_id), m_name(name), m_introduction(introduction) {}
     void showInfo();                     // 显示个人信息
     string setIntroduction(string text); // 设置自我介绍
     virtual string getDeptName() = 0;    // 获取岗位名称
@@ -22,7 +23,8 @@ public:
 class Employee : public Worker
 {
 public:
-    Employee(const int id, const int dept_id, const string name) : Worker(id, dept_id, name) {}
+    Employee(const int id, const int dept_id, const string name, const string introduction)
+        : Worker(id, dept_id, name, introduction) {}
     void showInfo();
     string getDeptName();
 };
@@ -30,7 +32,8 @@ public:
 class Manager : public Worker
 {
 public:
-    Manager(const int id, const int dept_id, const string name) : Worker(id, dept_id, name) {}
+    Manager(const int id, const int dept_id, const string name, const string introduction)
+        : Worker(id, dept_id, name, introduction) {}
     void showInfo();
     string getDeptName();
 };
@@ -38,7 +41,8 @@ public:
 class Boss : public Worker
 {
 public:
-    Boss(const int id, const int dept_id, const string name) : Worker(id, dept_id, name) {}
+    Boss(const int id, const int dept_id, const string name, const string introduction)
+        : Worker(id, dept_id, name, introduction) {}
     void showInfo();
     string getDeptName();
 };

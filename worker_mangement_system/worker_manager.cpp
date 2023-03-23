@@ -3,9 +3,6 @@
 
 WorkerManager::WorkerManager()
 {
-    this->m_employee_num = 0;      // 初始化人数
-    this->m_employee_array = NULL; // 初始化数组指针
-
     ifstream ifs;
     ifs.open(FILE_NAME, ios::in);
     // 文件不存在
@@ -31,7 +28,7 @@ WorkerManager::WorkerManager()
         ifs.close();                    // 关闭文件
         return;
     }
-    // 文件存在，且有内容
+    ReadFile();
 }
 WorkerManager::~WorkerManager()
 {
@@ -39,6 +36,16 @@ WorkerManager::~WorkerManager()
     {
         delete[] this->m_employee_array;
     }
+}
+
+int WorkerManager::get_employee_num()
+{
+    return this->m_employee_num;
+}
+
+int WorkerManager::get_file_empty_flag()
+{
+    return this->file_empty_flag;
 }
 
 void WorkerManager::ShowMenu()
@@ -119,6 +126,7 @@ void WorkerManager::AddEmployee()
             int id;
             string name;
             int select;
+            string introduction;
 
             cout << "请输入第 " << i + 1 << " 个新职工编号:" << endl;
             cin >> id;
@@ -132,18 +140,21 @@ void WorkerManager::AddEmployee()
             cout << "3、老板" << endl;
             cin >> select;
 
+            cout << "请输入第 " << i + 1 << " 个新职工的介绍:" << endl;
+            cin >> introduction;
+
             Worker *worker = NULL;
 
             switch (select)
             {
             case EMPLOYEE_DEPT_ID: // 普通员工
-                worker = new Employee(id, EMPLOYEE_DEPT_ID, name);
+                worker = new Employee(id, EMPLOYEE_DEPT_ID, name, introduction);
                 break;
             case MANAGER_DEPT_ID: // 经理
-                worker = new Manager(id, MANAGER_DEPT_ID, name);
+                worker = new Manager(id, MANAGER_DEPT_ID, name, introduction);
                 break;
             case BOSS_DEPT_ID: // 老板
-                worker = new Boss(id, BOSS_DEPT_ID, name);
+                worker = new Boss(id, BOSS_DEPT_ID, name, introduction);
                 break;
             default:
                 break;
@@ -167,6 +178,7 @@ void WorkerManager::SaveFile()
 {
     ofstream ofs;
     ofs.open(FILE_NAME, ios::out);
+    ofs << this->get_employee_num() << endl;
     for (int i = 0; i < this->m_employee_num; ++i)
     {
         ofs << this->m_employee_array[i]->m_name << " "
@@ -175,4 +187,32 @@ void WorkerManager::SaveFile()
             << this->m_employee_array[i]->m_introduction << endl;
     }
     ofs.close();
+}
+
+void WorkerManager::ReadFile()
+{
+    ifstream ifs;
+    ifs.open(FILE_NAME, ios::in);
+
+    int id;              // 职工编号
+    string name;         // 职工姓名
+    int dept_id;         // 职工部门编号
+    string introduction; // 职工自我介绍
+
+    int index_num = 0;
+    ifs >> index_num;
+    this->m_employee_num = index_num;
+    this->m_employee_array = new Worker *[index_num];
+
+    while (ifs >> name && ifs >> id && ifs >> dept_id && ifs >> introduction)
+    {
+        Worker *worker = nullptr;
+        if (dept_id == 1)
+            worker = new Employee(id, dept_id, name, introduction);
+        else if (dept_id == 2)
+            worker = new Manager(id, dept_id, name, introduction);
+        else if (dept_id == 3)
+            worker = new Boss(id, dept_id, name, introduction);
+        this->m_employee_array[index_num] = worker;
+    }
 }
