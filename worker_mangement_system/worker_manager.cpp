@@ -28,6 +28,12 @@ WorkerManager::WorkerManager()
         ifs.close();                    // 关闭文件
         return;
     }
+
+    // 文件存在且有内容
+    cout << "文件有内容，需要读取" << endl; // 测试输出
+    this->m_employee_num = 0;               // 初始化人数
+    this->m_employee_array = NULL;          // 初始化数组指针
+    this->file_empty_flag = 1;              // 初始化文件标志
     ReadFile();
 }
 WorkerManager::~WorkerManager()
@@ -183,7 +189,7 @@ void WorkerManager::SaveFile()
     {
         ofs << this->m_employee_array[i]->m_name << " "
             << this->m_employee_array[i]->m_id << " "
-            << this->m_employee_array[i]->getDeptName() << " "
+            << this->m_employee_array[i]->m_dept_id << " "
             << this->m_employee_array[i]->m_introduction << endl;
     }
     ofs.close();
@@ -204,15 +210,17 @@ void WorkerManager::ReadFile()
     this->m_employee_num = index_num;
     this->m_employee_array = new Worker *[index_num];
 
-    while (ifs >> name && ifs >> id && ifs >> dept_id && ifs >> introduction)
+    for (int i = 0; (i < index_num) && (ifs >> name >> id >> dept_id >> introduction); ++i)
     {
-        Worker *worker = nullptr;
+        Worker *worker = NULL;
         if (dept_id == 1)
             worker = new Employee(id, dept_id, name, introduction);
         else if (dept_id == 2)
             worker = new Manager(id, dept_id, name, introduction);
         else if (dept_id == 3)
             worker = new Boss(id, dept_id, name, introduction);
-        this->m_employee_array[index_num] = worker;
+        this->m_employee_array[i] = worker;
     }
+
+    ifs.close();
 }
