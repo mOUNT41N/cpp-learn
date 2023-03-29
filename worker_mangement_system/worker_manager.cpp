@@ -11,7 +11,7 @@ WorkerManager::WorkerManager()
         cout << "文件不存在" << endl;  // 测试输出
         this->m_employee_num = 0;      // 初始化人数
         this->m_employee_array = NULL; // 初始化数组指针
-        this->file_empty_flag = 0;     // 初始化文件标志
+        this->file_exist_flag = 0;     // 初始化文件标志
         ifs.close();                   // 关闭文件
         return;
     }
@@ -24,7 +24,7 @@ WorkerManager::WorkerManager()
         cout << "文件内容为空" << endl; // 测试输出
         this->m_employee_num = 0;       // 初始化人数
         this->m_employee_array = NULL;  // 初始化数组指针
-        this->file_empty_flag = 0;      // 初始化文件标志
+        this->file_exist_flag = 0;      // 初始化文件标志
         ifs.close();                    // 关闭文件
         return;
     }
@@ -33,7 +33,7 @@ WorkerManager::WorkerManager()
     cout << "文件有内容，需要读取" << endl; // 测试输出
     this->m_employee_num = 0;               // 初始化人数
     this->m_employee_array = NULL;          // 初始化数组指针
-    this->file_empty_flag = 1;              // 初始化文件标志
+    this->file_exist_flag = 1;              // 初始化文件标志
     ReadFile();
 }
 WorkerManager::~WorkerManager()
@@ -51,7 +51,7 @@ int WorkerManager::get_employee_num()
 
 int WorkerManager::get_file_empty_flag()
 {
-    return this->file_empty_flag;
+    return this->file_exist_flag;
 }
 
 void WorkerManager::ShowMenu()
@@ -92,8 +92,10 @@ void WorkerManager::Select()
             AddEmployee();
             break;
         case 2: // 显示职工
+            ShowEmployee();
             break;
         case 3: // 删除职工
+            DeleteEmployee();
             break;
         case 4: // 修改职工
             break;
@@ -171,7 +173,7 @@ void WorkerManager::AddEmployee()
         delete[] this->m_employee_array;    // 释放原有空间
         this->m_employee_array = new_space; // 更改新空间的指向
         this->m_employee_num = new_size;    // 更新新的个数
-        this->file_empty_flag = 1;          // 更新文件标志
+        this->file_exist_flag = 1;          // 更新文件标志
         cout << "成功添加" << add_num << "名新职工！" << endl;
         this->SaveFile();
     }
@@ -227,7 +229,7 @@ void WorkerManager::ReadFile()
 void WorkerManager::ShowEmployee()
 {
     // if (this->m_employee_array == nullptr)
-    if (file_empty_flag != 1 || this->m_employee_array == nullptr)
+    if (file_exist_flag != 1 || this->m_employee_array == nullptr)
     {
         cout << "文件不存在或记录为空！" << endl;
     }
@@ -238,4 +240,49 @@ void WorkerManager::ShowEmployee()
             this->m_employee_array[i]->showInfo();
         }
     }
+}
+void WorkerManager::DeleteEmployee()
+{
+    if (!this->file_exist_flag)
+    {
+        cout << "文件不存在或记录为空！" << endl;
+    }
+    else
+    {
+        // 按职工编号删除
+        cout << "请输入想要删除的职工号：" << endl;
+        int id = 0;
+        cin >> id;
+
+        int index = this->IsExist(id);
+
+        if (index != -1) // 说明index上位置数据需要删除
+        {
+            for (int i = index; i < this->m_employee_num - 1; i++)
+            {
+                this->m_employee_array[i] = this->m_employee_array[i + 1];
+            }
+            this->m_employee_num--;
+            SaveFile(); // 删除后数据同步到文件中
+            cout << "删除成功！" << endl;
+        }
+        else
+        {
+            cout << "删除失败，未找到该职工" << endl;
+        }
+    }
+}
+
+int WorkerManager::IsExist(int id)
+{
+    int index = -1;
+    for (int i = 0; i < this->m_employee_num; i++)
+    {
+        if (this->m_employee_array[i]->m_id == id)
+        {
+            index = i;
+            break;
+        }
+    }
+    return index;
 }

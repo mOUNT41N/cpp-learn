@@ -41,7 +41,6 @@ int main()
 {
     cout << "main" << endl;
     // test_worker();
-    // test_func();
-    test_show();
+    test_func();
     return 0;
 }

@@ -1,6 +1,1 @@
-5
-m1 1 1 emp1
-m2 2 2 manager2
-m3 3 3 boss1
-m4 4 1 emp2
-m5 5 1 emp3
+0
