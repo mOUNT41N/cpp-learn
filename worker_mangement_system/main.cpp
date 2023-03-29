@@ -23,6 +23,13 @@ void test_worker()
     delete worker3;
 }
 
+void test_show()
+{
+    cout << "----------show test----------" << endl;
+    WorkerManager wm;
+    wm.ShowEmployee();
+}
+
 void test_func()
 {
     cout << "----------test----------" << endl;
@@ -34,6 +41,7 @@ int main()
 {
     cout << "main" << endl;
     // test_worker();
-    test_func();
+    // test_func();
+    test_show();
     return 0;
 }

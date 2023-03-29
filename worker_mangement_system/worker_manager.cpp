@@ -224,3 +224,18 @@ void WorkerManager::ReadFile()
 
     ifs.close();
 }
+void WorkerManager::ShowEmployee()
+{
+    // if (this->m_employee_array == nullptr)
+    if (file_empty_flag != 1 || this->m_employee_array == nullptr)
+    {
+        cout << "文件不存在或记录为空！" << endl;
+    }
+    else
+    {
+        for (int i = 0; i < this->m_employee_num; ++i)
+        {
+            this->m_employee_array[i]->showInfo();
+        }
+    }
+}

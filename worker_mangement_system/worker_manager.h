@@ -25,12 +25,13 @@ public:
     int get_employee_num();
     int get_file_empty_flag();
 
-    void ShowMenu();    // 显示菜单
-    void Select();      // 选择菜单
-    void ExitSys();     // 退出
-    void AddEmployee(); // 添加职工
-    void SaveFile();    // 保存文件
-    void ReadFile();    // 读文件, 返回读了多少个数
+    void ShowMenu();     // 显示菜单
+    void Select();       // 选择菜单
+    void ExitSys();      // 退出
+    void AddEmployee();  // 添加职工
+    void SaveFile();     // 保存文件
+    void ReadFile();     // 读文件, 返回读了多少个数
+    void ShowEmployee(); // 显示员工
 };
 
 #endif
