@@ -33,7 +33,7 @@ public:
     void ReadFile();       // 读文件, 返回读了多少个数
     void ShowEmployee();   // 显示员工
     void DeleteEmployee(); // 删除员工
-    void UpdateEmployee(); // 修改员工
+    void ModifyEmployee(); // 修改员工
     void FindEmployee();   // 查找员工
     void SortEmployee();   // 员工排序
     int IsExist(int id);   // 员工是否存在

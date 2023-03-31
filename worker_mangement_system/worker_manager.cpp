@@ -98,6 +98,7 @@ void WorkerManager::Select()
             DeleteEmployee();
             break;
         case 4: // 修改职工
+            ModifyEmployee();
             break;
         case 5: // 查找职工
             break;
@@ -285,4 +286,72 @@ int WorkerManager::IsExist(int id)
         }
     }
     return index;
+}
+
+void WorkerManager::ModifyEmployee()
+{
+    if (!this->file_exist_flag)
+    {
+        cout << "文件不存在或记录为空！" << endl;
+    }
+    else
+    {
+        cout << "请输入修改职工的编号：" << endl;
+        int id;
+        cin >> id;
+
+        int ret = this->IsExist(id);
+        if (ret == -1)
+        {
+            cout << "修改失败，查无此人" << endl;
+        }
+        else
+        {
+            // 查找到编号的职工
+            delete this->m_employee_array[ret];
+
+            int new_id = 0;
+            string new_name = "";
+            string new_introduction = "";
+            int dept_id = 0;
+
+            cout << "查到： " << id << "号职工，请输入新职工号： " << endl;
+            cin >> new_id;
+
+            cout << "请输入新姓名： " << endl;
+            cin >> new_name;
+
+            cout << "请输入岗位： " << endl;
+            cout << "1、普通职工" << endl;
+            cout << "2、经理" << endl;
+            cout << "3、老板" << endl;
+            cin >> dept_id;
+
+            cout << "请输入职工的介绍:" << endl;
+            cin >> new_introduction;
+
+            Worker *worker = NULL;
+            switch (dept_id)
+            {
+            case1:
+                worker = new Employee(new_id, dept_id, new_name, new_introduction);
+                break;
+            case2:
+                worker = new Manager(new_id, dept_id, new_name, new_introduction);
+                break;
+            case 3:
+                worker = new Boss(new_id, dept_id, new_name, new_introduction);
+                break;
+            default:
+                break;
+            }
+
+            // 更改数据 到数组中
+            this->m_employee_array[ret] = worker;
+            cout << "修改成功！" << endl;
+
+            // 保存到文件中
+            this->SaveFile();
+        }
+    }
 }
