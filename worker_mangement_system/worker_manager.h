@@ -36,6 +36,7 @@ public:
     void ModifyEmployee(); // 修改员工
     void FindEmployee();   // 查找员工
     void SortEmployee();   // 员工排序
+    void CleanFile();      // 清空文件
     int IsExist(int id);   // 员工是否存在
 };
 

@@ -107,6 +107,7 @@ void WorkerManager::Select()
             SortEmployee();
             break;
         case 7: // 清空文件
+            CleanFile();
             break;
         default:
 
@@ -471,5 +472,39 @@ void WorkerManager::SortEmployee()
         cout << "排序成功,排序后结果为：" << endl;
         this->SaveFile();
         this->ShowEmployee();
+    }
+}
+
+// 清空文件
+void WorkerManager::CleanFile()
+{
+    cout << "确认清空？" << endl;
+    cout << "1、确认" << endl;
+    cout << "2、返回" << endl;
+
+    int select = 0;
+    cin >> select;
+
+    if (select == 1)
+    {
+        // 打开模式 ios::trunc 如果存在删除文件并重新创建
+        ofstream ofs(FILE_NAME, ios::trunc);
+        ofs.close();
+
+        if (this->m_employee_array != NULL)
+        {
+            for (int i = 0; i < this->m_employee_num; i++)
+            {
+                if (this->m_employee_array[i] != NULL)
+                {
+                    delete this->m_employee_array[i];
+                }
+            }
+            this->m_employee_num = 0;
+            delete[] this->m_employee_array;
+            this->m_employee_array = NULL;
+            this->file_exist_flag = 0;
+        }
+        cout << "清空成功！" << endl;
     }
 }
