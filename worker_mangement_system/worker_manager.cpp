@@ -104,6 +104,7 @@ void WorkerManager::Select()
             FindEmployee();
             break;
         case 6: // 排序职工
+            SortEmployee();
             break;
         case 7: // 清空文件
             break;
@@ -419,5 +420,56 @@ void WorkerManager::FindEmployee()
         {
             cout << "输入选项有误" << endl;
         }
+    }
+}
+
+// 排序职工
+void WorkerManager::SortEmployee()
+{
+    if (!this->file_exist_flag)
+    {
+        cout << "文件不存在或记录为空！" << endl;
+    }
+    else
+    {
+        cout << "请选择排序方式： " << endl;
+        cout << "1、按职工号进行升序" << endl;
+        cout << "2、按职工号进行降序" << endl;
+
+        int select = 0;
+        cin >> select;
+
+        for (int i = 0; i < m_employee_num; i++)
+        {
+            int minOrMax = i;
+            for (int j = i + 1; j < m_employee_num; j++)
+            {
+                if (select == 1) // 升序
+                {
+                    if (m_employee_array[minOrMax]->m_id > m_employee_array[j]->m_id)
+                    {
+                        minOrMax = j;
+                    }
+                }
+                else // 降序
+                {
+                    if (m_employee_array[minOrMax]->m_id < m_employee_array[j]->m_id)
+                    {
+                        minOrMax = j;
+                    }
+                }
+            }
+
+            if (i != minOrMax)
+            {
+                Worker *temp = m_employee_array[i];
+                m_employee_array[i] = m_employee_array[minOrMax];
+                m_employee_array[minOrMax] = temp;
+            }
+        }
+
+        cout << "排序成功,排序后结果为：" << endl;
+        this->SaveFile();
+        this->ShowEmployee();
     }
 }
