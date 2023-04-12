@@ -6,7 +6,7 @@
 
 int main()
 {
-    Person<string, int> p("Tom", 10);
+    Person<string, int> p("mt", 22);
     p.showPerson();
     return 0;
 }
