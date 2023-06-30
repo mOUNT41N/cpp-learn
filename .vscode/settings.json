@@ -45,7 +45,8 @@
         "xstddef": "cpp",
         "xtr1common": "cpp",
         "iomanip": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "xlocmon": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
